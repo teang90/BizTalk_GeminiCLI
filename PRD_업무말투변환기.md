@@ -307,6 +307,7 @@ Content-Type: application/json
 4. `convert.py` — API 라우터 구현 (✅ 완료)
 5. `main.py` — 메인 앱 설정(FastAPI 앱 + CORS 설정) (✅ 완료)
 6. 로컬 서버 실행 및 테스트 (`uvicorn main:app --reload`) (✅ 완료)
+7. LLM과 데이터를 주고받는 request, response 로그를 남기고, 터미널에서 볼 수 있어야함.
 
 **핵심 코드 구조 참고**
 
@@ -352,6 +353,8 @@ app.include_router(convert.router, prefix="/api")
 2. `style.css` — CSS 스타일링(기본 스타일 적용) (✅ 완료)
 3. `app.js` — JavaScript 기능 구현(버튼 이벤트 + API 호출 + 결과 출력) (✅ 완료)
 4. 브라우저 테스트 (✅ 완료)
+5. web 화면에서 화면 크기를 줄이면 동적으로 화면 비율이 조정되고, 만약 모바일 환경이라면 모바일 화면에 맞게 최적화할 수 있도록, 반응형 web 기능이 가능해야해 (✅ 완료)
+   
 
 **핵심 JS 구조 참고**
 
