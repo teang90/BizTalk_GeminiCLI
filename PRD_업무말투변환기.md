@@ -49,11 +49,11 @@ AI도 사람도 "끝"의 기준이 명확해야 헤매지 않습니다. 기준 �
 
 ```
 ✅ 좋은 순서
-1단계: "Solar-Pro2 연동 방법 먼저 알려줘. 코드는 아직 짜지 말고."
+1단계: "Solar-Pro3 연동 방법 먼저 알려줘. 코드는 아직 짜지 말고."
 2단계: 방법 이해 후 → "이제 그 방법으로 구현해줘."
 
 ❌ 나쁜 순서
-바로: "Solar-Pro2 연동 코드 짜줘."
+바로: "Solar-Pro3 연동 코드 짜줘."
 → 구버전 API, 잘못된 패키지로 1시간 디버깅 시작
 ```
 
@@ -84,11 +84,13 @@ AI도 사람도 "끝"의 기준이 명확해야 헤매지 않습니다. 기준 �
 ### 백엔드
 
 - [ ] FastAPI 서버가 로컬에서 정상 실행된다 (`uvicorn main:app`)
+- [ ] Health Check 기능이 존재해야 한다
 - [ ] `POST /api/convert` 엔드포인트가 존재한다
-- [ ] Upstage Solar-Pro2 API 호출이 정상 작동한다
+- [ ] Upstage Solar-Pro3 API 호출이 정상 작동한다
 - [ ] 수신 대상(4종)에 따라 다른 프롬프트가 적용된다
 - [ ] CORS 설정이 되어 있어 프론트엔드에서 호출 가능하다
 - [ ] `.env` 파일로 API 키를 관리하고, `.gitignore`에 등록되어 있다
+- [ ] FastAPI 서버에 Staic Page(`index.html`) 라우팅 기능이 있어야 한다 
 
 ### 프론트엔드
 
@@ -102,6 +104,7 @@ AI도 사람도 "끝"의 기준이 명확해야 헤매지 않습니다. 기준 �
 ### 배포
 
 - [ ] GitHub 레포지토리에 코드가 올라가 있다
+- [ ] Vercel 에 프론트엔드와 백엔드 같이 배포한다
 - [ ] Vercel에서 프론트엔드가 정상 접속된다
 - [ ] 배포된 URL에서 실제 변환이 작동한다
 
@@ -114,7 +117,7 @@ AI도 사람도 "끝"의 기준이 명확해야 헤매지 않습니다. 기준 �
 | 프론트엔드 | HTML5 / CSS3 / JavaScript (ES6+) | 프레임워크 없음 |
 | 백엔드 | Python 3.11+ / FastAPI / Uvicorn | |
 | AI 연동 | LangChain / langchain-upstage | |
-| AI 모델 | Upstage Solar-Pro2 | |
+| AI 모델 | Upstage Solar-Pro3 | |
 | 환경 변수 | python-dotenv | `.env` 파일 관리 |
 | 버전 관리 | Git / GitHub | |
 | 배포 | Vercel | 프론트엔드 정적 배포 |
@@ -151,7 +154,7 @@ UPSTAGE_API_KEY=your_api_key_here
 |----|------|------|
 | F-01 | 텍스트 입력 | 사용자가 변환할 원문을 자유롭게 입력 |
 | F-02 | 수신 대상 선택 | 상사 / 타팀 동료 / 고객 / 팀 내 동료 중 선택 |
-| F-03 | 말투 변환 처리 | FastAPI → LangChain → Solar-Pro2 호출 |
+| F-03 | 말투 변환 처리 | FastAPI → LangChain → Solar-Pro3 호출 |
 | F-04 | 결과 출력 | 변환된 텍스트를 화면에 표시 |
 | F-05 | 로딩 표시 | API 호출 중 처리 중 상태 표시 |
 | F-06 | 결과 복사 | 변환 결과를 클립보드에 복사 |
@@ -204,13 +207,12 @@ biztone-converter/
 │   ├── routers/
 │   │   └── convert.py          # /api/convert 라우터
 │   ├── services/
-│   │   └── tone_converter.py   # LangChain + Solar-Pro2 연동
+│   │   └── tone_converter.py   # LangChain + Solar-Pro3 연동
 │   ├── prompts/
 │   │   └── templates.py        # 대상별 프롬프트 템플릿
 │   ├── models/
 │   │   └── schemas.py          # Pydantic 요청/응답 스키마
-│   ├── .env                    # API 키 (git 제외)
-│   ├── .env.example            # 환경 변수 샘플 (git 포함)
+|   |
 │   └── requirements.txt
 │
 ├── frontend/
@@ -220,6 +222,7 @@ biztone-converter/
 │   └── js/
 │       └── app.js
 │
+|── .env                    # API 키 (git 제외)
 ├── .gitignore
 └── README.md
 ```
@@ -281,25 +284,26 @@ Content-Type: application/json
 
 ## 8. 단계별 구현 순서
 
-### STEP 1. 환경 준비 (30분)
+### STEP 1. 환경 준비
 
-1. GitHub 레포지토리 생성 (`biztone-converter`)
+1. GitHub 레포지토리 생성 (`BizTalk_GeminiCLI`)
 2. 디렉토리 구조 생성
 3. `.gitignore` 작성 — `.env` 반드시 포함
 4. Upstage API 키 발급 및 `.env` 파일 작성
-5. `requirements.txt` 작성 및 패키지 설치
+5. `requirements.txt` 작성하고 의존성 버전(use context7)을 명시해야함
+6. 가상환경(`venv`) 폴더를 생성하고 `requirements.txt` 명시된 의존성을 가상 환경에 설치해야함
 
 ---
 
-### STEP 2. 백엔드 구현 (90분)
+### STEP 2. 백엔드 구현
 
-> 원칙 2 적용: 구현 전 Solar-Pro2 연동 방식을 먼저 확인하세요.
+> 원칙 2 적용: 구현 전 Solar-Pro3 연동 방식을 먼저 확인(use context7)하세요.
 
 **구현 순서**
 
 1. `schemas.py` — 데이터 모델 정의(요청/응답 데이터 모델 정의)
 2. `templates.py` — 프롬프트 템플릿 작성(수신 대상별 프롬프트 템플릿 작성)
-3. `tone_converter.py` — 핵심 변환 로직 구현(LangChain + Solar-Pro2 연동)
+3. `tone_converter.py` — 핵심 변환 로직 구현(LangChain + Solar-Pro3 연동)
 4. `convert.py` — API 라우터 구현
 5. `main.py` — 메인 앱 설정(FastAPI 앱 + CORS 설정)
 6. 로컬 서버 실행 및 테스트 (`uvicorn main:app --reload`)
@@ -402,7 +406,7 @@ async function convertTone() {
 ### 환경 파악 (원칙 2)
 
 ```
-Upstage Solar-Pro2를 LangChain으로 연동하는 최신 방법을 알려줘.
+Upstage Solar-Pro3를 LangChain으로 연동하는 최신 방법을 알려줘.
 어떤 패키지를 설치해야 하고, ChatUpstage 클래스는 어떻게 사용하는지
 코드 없이 방법만 먼저 설명해줘.
 ```
@@ -418,7 +422,7 @@ Upstage Solar-Pro2를 LangChain으로 연동하는 최신 방법을 알려줘.
 - 응답: { converted_text: string, target_audience: string, original_text: string }
 - target_audience는 boss / colleague / client / team 4종
 - 각 대상마다 다른 시스템 프롬프트 적용
-- Upstage Solar-Pro2 API 사용
+- Upstage Solar-Pro3 API 사용
 - .env에서 UPSTAGE_API_KEY 로드
 - CORS 허용
 

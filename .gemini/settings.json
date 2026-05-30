@@ -1,5 +1,6 @@
 {
   "mcpServers": {
+    // github settings for gemini
     "github": {
       "command": "npx",
       "args": ["@modelcontextprotocol/server-github"],
@@ -8,6 +9,19 @@
       },
       "timeout": 10000,
       "trust": false
+    },
+    // context-7 settings for gemini
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"],
+      "env": {
+        "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
+      }
+    },
+    // playwright settings for gemini
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@executeautomation/playwright-mcp-server"]
     }
   },
   "$version": 2
