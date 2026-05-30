@@ -25,8 +25,8 @@
 현재 프로젝트는 초기 기획 및 설계 단계에 있으며, 실제 코드는 `backend/` 및 `frontend/` 디렉토리에 구성될 예정입니다.
 
 ### 백엔드 (Python/FastAPI)
--   **의존성 설치**: `pip install fastapi uvicorn langchain langchain-upstage python-dotenv`
--   **실행**: `uvicorn main:app --reload --port 8000` (백엔드 디렉토리 기준)
+-   **의존성 설치**: `pip install fastapi==0.136.3 uvicorn[standard]==0.48.0 langchain==1.3.2 langchain-upstage==0.7.7 python-dotenv==1.2.2 pydantic==2.13.4`
+-   **실행**: `uvicorn main:app --reload --port 8000` (backend 디렉토리 기준)
 -   **환경 변수**: `.env` 파일에 `UPSTAGE_API_KEY` 설정 필수.
 
 ### 프론트엔드 (Web)
@@ -60,9 +60,9 @@
 
 ## 5. 단계별 구현 계획 (Implementation Roadmap)
 
-1.  **STEP 1**: 환경 구성 및 디렉토리 구조 생성 (완료 여부 체크 필요).
-2.  **STEP 2**: FastAPI 기반 백엔드 및 AI 연동 로직 구현.
-3.  **STEP 3**: 웹 인터페이스(HTML/JS) 구현 및 API 연결.
+1.  **STEP 1**: 환경 구성 및 디렉토리 구조 생성 (✅ 완료)
+2.  **STEP 2**: FastAPI 기반 백엔드 및 AI 연동 로직 구현 (✅ 완료)
+3.  **STEP 3**: 웹 인터페이스(HTML/JS) 구현 및 API 연결 (✅ 완료)
 4.  **STEP 4**: GitHub 업로드 및 Vercel 배포.
 
 ---
@@ -70,3 +70,7 @@
 * 모든 변경사항이 발생하면 (예를 들어 Source Code가 변경 되거나 라이브러리 버전이 변경되면) md 문서도 반드시 업데이트 합니다. 
 * 구현이 완료된 사항들은 `2. 완료 체크리스트`에 모두 체크표시를 해서 완료 되었음을 반드시 표시하세요.
 * `8. 단계별 구현 순서` 에서도 STEP별로 구현이 완료되면 체크표시를 해서 완료 되었음을 반드시 표시하세요.
+
+---
+### .env 수정금지 사항
+* .env 파일은 절대로 수정하면 안된다.

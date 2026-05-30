@@ -103,7 +103,7 @@ AI도 사람도 "끝"의 기준이 명확해야 헤매지 않습니다. 기준 �
 
 ### 배포
 
-- [ ] GitHub 레포지토리에 코드가 올라가 있다
+- [x] GitHub 레포지토리에 코드가 올라가 있다
 - [ ] Vercel 에 프론트엔드와 백엔드 같이 배포한다
 - [ ] Vercel에서 프론트엔드가 정상 접속된다
 - [ ] 배포된 URL에서 실제 변환이 작동한다
@@ -284,29 +284,29 @@ Content-Type: application/json
 
 ## 8. 단계별 구현 순서
 
-### STEP 1. 환경 준비
+### STEP 1. 환경 준비 (✅ 완료)
 
-1. GitHub 레포지토리 생성 (`BizTalk_GeminiCLI`)
-2. 디렉토리 구조 생성
-3. `.gitignore` 작성 — `.env` 반드시 포함
-4. Upstage API 키 발급 및 `.env` 파일 작성
-5. `requirements.txt` 작성하고 의존성 버전(use context7)을 명시해야함
-6. 가상환경(`venv`) 폴더를 생성하고 `requirements.txt` 명시된 의존성을 가상 환경에 설치해야함
+1. GitHub 레포지토리 생성 (✅ 완료)
+2. 디렉토리 구조 생성 (✅ 완료)
+3. `.gitignore` 작성 — `.env` 반드시 포함 (✅ 완료)
+4. Upstage API 키 발급 및 `.env` 파일 작성 (✅ 완료)
+5. `requirements.txt` 작성하고 의존성 버전(use context7)을 명시해야함 (✅ 완료)
+6. 가상환경(`venv`) 폴더를 생성하고 `requirements.txt` 명시된 의존성을 가상 환경에 설치해야함 (✅ 완료)
 
 ---
 
-### STEP 2. 백엔드 구현
+### STEP 2. 백엔드 구현 (✅ 완료)
 
-> 원칙 2 적용: 구현 전 Solar-Pro3 연동 방식을 먼저 확인(use context7)하세요.
+> 원칙 2 적용: 구현 전 Solar-Pro3 연동 방식을 먼저 확인(use context7)하세요. (✅ 완료)
 
 **구현 순서**
 
-1. `schemas.py` — 데이터 모델 정의(요청/응답 데이터 모델 정의)
-2. `templates.py` — 프롬프트 템플릿 작성(수신 대상별 프롬프트 템플릿 작성)
-3. `tone_converter.py` — 핵심 변환 로직 구현(LangChain + Solar-Pro3 연동)
-4. `convert.py` — API 라우터 구현
-5. `main.py` — 메인 앱 설정(FastAPI 앱 + CORS 설정)
-6. 로컬 서버 실행 및 테스트 (`uvicorn main:app --reload`)
+1. `schemas.py` — 데이터 모델 정의(요청/응답 데이터 모델 정의) (✅ 완료)
+2. `templates.py` — 프롬프트 템플릿 작성(수신 대상별 프롬프트 템플릿 작성) (✅ 완료)
+3. `tone_converter.py` — 핵심 변환 로직 구현(LangChain + Solar-Pro3 연동) (✅ 완료)
+4. `convert.py` — API 라우터 구현 (✅ 완료)
+5. `main.py` — 메인 앱 설정(FastAPI 앱 + CORS 설정) (✅ 완료)
+6. 로컬 서버 실행 및 테스트 (`uvicorn main:app --reload`) (✅ 완료)
 
 **핵심 코드 구조 참고**
 
@@ -344,14 +344,14 @@ app.include_router(convert.router, prefix="/api")
 
 ---
 
-### STEP 3. 프론트엔드 구현 (60분)
+### STEP 3. 프론트엔드 구현 (✅ 완료)
 
 **구현 순서**
 
-1. `index.html` — HTML 구조 설계(화면 레이아웃 작성)
-2. `style.css` — CSS 스타일링(기본 스타일 적용)
-3. `app.js` — JavaScript 기능 구현(버튼 이벤트 + API 호출 + 결과 출력)
-4. 브라우저 테스트
+1. `index.html` — HTML 구조 설계(화면 레이아웃 작성) (✅ 완료)
+2. `style.css` — CSS 스타일링(기본 스타일 적용) (✅ 완료)
+3. `app.js` — JavaScript 기능 구현(버튼 이벤트 + API 호출 + 결과 출력) (✅ 완료)
+4. 브라우저 테스트 (✅ 완료)
 
 **핵심 JS 구조 참고**
 
